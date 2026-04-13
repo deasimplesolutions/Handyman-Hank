@@ -12,6 +12,11 @@
             --gold: #d4a843;
             --gold-light: #f5e6b8;
             --cream: #fdf8ef;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-900: #111827;
         }
 
         * {
@@ -53,6 +58,17 @@
             gap: 30px;
         }
 
+        .topbar-phone a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        .topbar-phone a:hover {
+            opacity: 0.8;
+        }
+
         /* Navigation */
         nav {
             background-color: white;
@@ -62,6 +78,9 @@
             z-index: 100;
             box-shadow: none;
             transition: box-shadow 0.3s ease;
+            height: 80px;
+            display: flex;
+            align-items: center;
         }
 
         nav.scrolled {
@@ -75,17 +94,19 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 70px;
+            width: 100%;
+            height: 80px;
         }
 
         .logo {
-            height: 50px;
+            height: 52px;
             display: flex;
             align-items: center;
+            flex-shrink: 0;
         }
 
         .logo img {
-            height: 100%;
+            height: 52px;
             width: auto;
         }
 
@@ -100,7 +121,7 @@
 
         .nav-item {
             position: relative;
-            height: 70px;
+            height: 80px;
             display: flex;
             align-items: center;
         }
@@ -110,31 +131,79 @@
             text-decoration: none;
             font-weight: 500;
             padding: 0 18px;
-            height: 70px;
+            height: 80px;
             display: flex;
             align-items: center;
             transition: color 0.3s ease;
             cursor: pointer;
+            font-size: 15px;
+            position: relative;
         }
 
         .nav-link:hover {
             color: var(--teal);
         }
 
+        .nav-link.active {
+            color: var(--gold);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--gold);
+        }
+
+        .dropdown-arrow {
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
         .dropdown-menu {
             display: none;
             position: absolute;
-            top: 70px;
-            left: 0;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
             background-color: white;
-            border-radius: 0 0 16px 16px;
-            min-width: 240px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            min-width: 220px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
             z-index: 101;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            visibility: hidden;
+            margin-top: 8px;
+        }
+
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
         }
 
         .nav-item:hover .dropdown-menu {
             display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
         }
 
         .dropdown-menu a {
@@ -143,40 +212,51 @@
             text-decoration: none;
             padding: 12px 20px;
             font-size: 14px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
             border-bottom: 1px solid #f0f0f0;
+            position: relative;
+        }
+
+        .dropdown-menu a:first-child {
+            border-radius: 12px 12px 0 0;
         }
 
         .dropdown-menu a:last-child {
             border-bottom: none;
+            border-radius: 0 0 12px 12px;
         }
 
         .dropdown-menu a:hover {
             background-color: var(--gold-light);
             color: var(--navy);
+            transform: translateX(4px);
         }
 
-        .cta-button {
+        .nav-cta {
             background-color: var(--gold);
             color: var(--navy);
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 12px 28px;
+            border-radius: 100px;
             font-weight: 600;
             text-decoration: none;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
             border: none;
             cursor: pointer;
+            font-size: 14px;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
-        .cta-button:hover {
+        .nav-cta:hover {
             background-color: #c9942a;
+            transform: translateY(-2px);
         }
 
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
             color: white;
-            padding: 100px 20px;
+            padding: 120px 20px;
             text-align: center;
             margin-top: 0;
         }
@@ -203,10 +283,32 @@
             opacity: 0.95;
         }
 
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            border-radius: 100px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .btn-primary {
+            background-color: var(--gold);
+            color: var(--navy);
+        }
+
+        .btn-primary:hover {
+            background-color: #c9942a;
+            transform: translateY(-2px);
+        }
+
         /* Services Section */
         .services-section {
             max-width: 1200px;
-            margin: 80px auto;
+            margin: 100px auto;
             padding: 0 20px;
         }
 
@@ -214,7 +316,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 42px;
             color: var(--navy);
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             text-align: center;
         }
 
@@ -231,7 +333,7 @@
             border-radius: 16px;
             padding: 40px 30px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
             animation: fadeUp 0.6s ease-out forwards;
             opacity: 0;
         }
@@ -256,7 +358,7 @@
 
         .service-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
             border-color: var(--gold);
         }
 
@@ -280,9 +382,9 @@
 
         /* Why Choose Us */
         .why-choose {
-            background-color: var(--gold-light);
-            padding: 80px 20px;
-            margin: 80px 0;
+            background: linear-gradient(135deg, var(--gold-light) 0%, rgba(245, 230, 184, 0.5) 100%);
+            padding: 100px 20px;
+            margin: 100px 0;
         }
 
         .why-choose-content {
@@ -295,7 +397,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 42px;
             color: var(--navy);
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .benefits-grid {
@@ -306,9 +408,23 @@
 
         .benefit-item {
             background-color: white;
-            padding: 30px;
+            padding: 40px 30px;
             border-radius: 16px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--gold);
+            text-align: left;
+            transition: all 0.3s ease;
+            animation: fadeUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .benefit-item:nth-child(1) { animation-delay: 0.1s; }
+        .benefit-item:nth-child(2) { animation-delay: 0.2s; }
+        .benefit-item:nth-child(3) { animation-delay: 0.3s; }
+
+        .benefit-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
 
         .benefit-item h3 {
@@ -328,9 +444,14 @@
         .cta-banner {
             background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
             color: white;
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
-            margin: 80px 0;
+            margin: 100px 0;
+        }
+
+        .cta-banner-content {
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         .cta-banner h2 {
@@ -345,20 +466,21 @@
             opacity: 0.95;
         }
 
-        .cta-banner-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
         .cta-promo {
             background-color: var(--gold);
             color: var(--navy);
             display: inline-block;
-            padding: 12px 30px;
-            border-radius: 8px;
+            padding: 14px 36px;
+            border-radius: 100px;
             font-weight: 700;
             font-size: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-promo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 168, 67, 0.3);
         }
 
         .phone-link {
@@ -375,7 +497,7 @@
 
         /* Footer */
         footer {
-            background-color: var(--navy);
+            background-color: var(--gray-900);
             color: white;
             padding: 60px 20px 30px;
         }
@@ -389,9 +511,27 @@
             margin-bottom: 40px;
         }
 
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-brand img {
+            height: 40px;
+            width: auto;
+            margin-bottom: 5px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: #d1d5db;
+            line-height: 1.6;
+        }
+
         .footer-section h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 18px;
+            font-size: 16px;
             margin-bottom: 20px;
             color: var(--gold);
         }
@@ -405,8 +545,9 @@
         }
 
         .footer-section a {
-            color: #ccc;
+            color: #d1d5db;
             text-decoration: none;
+            font-size: 14px;
             transition: color 0.3s ease;
         }
 
@@ -414,24 +555,126 @@
             color: var(--gold);
         }
 
+        .footer-section ul li:not(a) {
+            color: #d1d5db;
+            font-size: 14px;
+        }
+
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 30px;
             text-align: center;
-            color: #ccc;
-            font-size: 14px;
+            color: #9ca3af;
+            font-size: 13px;
+        }
+
+        .footer-bottom a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--gold);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--navy);
+            transition: all 0.3s ease;
+            border-radius: 2px;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
             .nav-links {
-                margin-left: 20px;
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background-color: white;
+                border-bottom: 1px solid #e5e7eb;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                z-index: 100;
                 gap: 0;
+                margin-left: 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-item {
+                width: 100%;
+                height: auto;
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            .nav-item:last-child {
+                border-bottom: none;
             }
 
             .nav-link {
-                padding: 0 12px;
-                font-size: 14px;
+                width: 100%;
+                height: auto;
+                padding: 16px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-link.active::after {
+                display: none;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+                box-shadow: none;
+                background-color: #f9fafb;
+                margin: 0;
+                transform: none;
+            }
+
+            .dropdown-menu::before {
+                display: none;
+            }
+
+            .nav-item.active .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-menu a {
+                padding: 10px 20px 10px 40px;
+            }
+
+            .nav-cta {
+                width: 100%;
+                text-align: center;
+                border-radius: 8px;
+                margin: 15px 20px;
+            }
+
+            .topbar-content {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
             }
 
             .hero h1 {
@@ -444,20 +687,34 @@
 
             .section-title {
                 font-size: 32px;
+                margin-bottom: 40px;
             }
 
             .services-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
 
-            .topbar-content {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
+            .why-choose {
+                padding: 60px 20px;
+                margin: 60px 0;
+            }
+
+            .benefits-grid {
+                gap: 20px;
+            }
+
+            .cta-banner {
+                padding: 60px 20px;
+                margin: 60px 0;
             }
 
             .cta-banner h2 {
                 font-size: 28px;
+            }
+
+            .footer-content {
+                gap: 30px;
             }
         }
     </style>
@@ -467,10 +724,10 @@
     <div class="topbar">
         <div class="topbar-content">
             <div class="topbar-hours">
-                <span>Mon-Fri: 8am-5pm</span>
+                <span>Monday – Friday: 8am – 5pm | 24/7 Emergency Service</span>
             </div>
-            <div>
-                <a href="tel:+14693040535" style="color: white; text-decoration: none; font-weight: 600;">(469) 304-0535</a>
+            <div class="topbar-phone">
+                <a href="tel:+14693040535">Call Now: (469) 304-0535</a>
             </div>
         </div>
     </div>
@@ -479,11 +736,13 @@
     <nav id="navbar">
         <div class="navbar">
             <div class="logo">
-                <a href="hanks-plano-modern.html" style="text-decoration: none; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--navy);">Hank's <span style="color: var(--gold);">Handyman</span></a>
+                <a href="hanks-plano-modern.html" style="text-decoration: none;">
+                    <img src="https://callhanks.com/wp-content/uploads/2022/03/thumbnail_HanksLogo_RGB.webp" alt="Hank's Handyman Logo">
+                </a>
             </div>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li class="nav-item">
-                    <span class="nav-link">Handyman</span>
+                    <span class="nav-link active">Handyman <span class="dropdown-arrow">▼</span></span>
                     <div class="dropdown-menu">
                         <a href="handyman.html#carpentry">Carpentry Repairs</a>
                         <a href="handyman.html#doors">Door Repairs</a>
@@ -494,7 +753,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <span class="nav-link">Pest Control</span>
+                    <span class="nav-link">Pest Control <span class="dropdown-arrow">▼</span></span>
                     <div class="dropdown-menu">
                         <a href="pest-control.html">General Pest Control</a>
                         <a href="pest-control.html">Termite Protection</a>
@@ -503,7 +762,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <span class="nav-link">Lawn Care</span>
+                    <span class="nav-link">Lawn Care <span class="dropdown-arrow">▼</span></span>
                     <div class="dropdown-menu">
                         <a href="lawncare.html">Mowing & Edging</a>
                         <a href="lawncare.html">Fertilization & Weed Control</a>
@@ -512,7 +771,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <span class="nav-link">Outdoor</span>
+                    <span class="nav-link">Outdoor <span class="dropdown-arrow">▼</span></span>
                     <div class="dropdown-menu">
                         <a href="outdoor.html">Pressure Washing</a>
                         <a href="outdoor.html">Gutter Cleaning</a>
@@ -524,9 +783,20 @@
                     <a href="about.html" class="nav-link">About</a>
                 </li>
                 <li class="nav-item">
-                    <a href="hanks-plano-modern.html#contact" class="nav-link">Contact</a>
+                    <a href="hanks-plano-modern.html#office" class="nav-link">Office</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="tel:+14693040535" class="nav-cta">Call (469) 304-0535</a>
                 </li>
             </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
@@ -610,8 +880,12 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
+            <div class="footer-brand">
+                <img src="https://callhanks.com/wp-content/uploads/2022/03/thumbnail_HanksLogo_RGB.webp" alt="Hank's Handyman Logo">
+                <p>Professional handyman services, pest control, lawn care, and outdoor solutions for Plano, TX and surrounding areas. Quality workmanship backed by our warranty.</p>
+            </div>
             <div class="footer-section">
-                <h3>Our Services</h3>
+                <h3>Services</h3>
                 <ul>
                     <li><a href="handyman.html">Handyman Services</a></li>
                     <li><a href="pest-control.html">Pest Control</a></li>
@@ -624,31 +898,22 @@
                 <ul>
                     <li><a href="#">Plano, TX</a></li>
                     <li><a href="#">Dallas, TX</a></li>
+                    <li><a href="#">Frisco, TX</a></li>
                     <li><a href="#">Surrounding Areas</a></li>
-                    <li><a href="#">Local Services</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h3>Contact Info</h3>
+                <h3>Contact</h3>
                 <ul>
                     <li><a href="tel:+14693040535">(469) 304-0535</a></li>
-                    <li>Mon-Fri: 8am-5pm</li>
-                    <li><a href="#">Service Request</a></li>
-                    <li><a href="hanks-plano-modern.html#contact">Contact Form</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="hanks-plano-modern.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="hanks-plano-modern.html#contact">Get a Quote</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li>Monday – Friday: 8am – 5pm</li>
+                    <li>24/7 Emergency Service</li>
+                    <li><a href="contact.html">Contact Form</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Hank's Handyman Services. All rights reserved. Serving Plano, TX and surrounding areas.</p>
+            <p>&copy; 2026 Hank's Handyman Services. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
         </div>
     </footer>
 
@@ -660,6 +925,32 @@
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            const link = item.querySelector('.nav-link');
+            if (link && !link.getAttribute('href')) {
+                link.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.navbar')) {
+                navLinks.classList.remove('active');
             }
         });
     </script>

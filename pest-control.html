@@ -1,698 +1,578 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pest Control Services | Hank's Handyman - Plano, TX</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --navy: #1b3a4b;
-            --teal: #2d6375;
-            --gold: #d4a843;
-            --gold-light: #f5e6b8;
-            --cream: #fdf8ef;
-            --text-dark: #2a2a2a;
-            --text-light: #666;
-            --border-radius-lg: 16px;
-            --border-radius-md: 10px;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            background-color: #ffffff;
-        }
-
-        /* Top Bar */
-        .topbar {
-            background-color: var(--navy);
-            color: white;
-            padding: 12px 0;
-            font-size: 13px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .topbar-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .topbar-hours {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .topbar-hours span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .topbar-phone {
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        /* Navigation */
-        nav {
-            background-color: white;
-            padding: 0;
-            position: sticky;
-            top: 45px;
-            z-index: 999;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-        }
-
-        .logo img {
-            height: 50px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 0;
-            align-items: center;
-            margin: 0;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            color: var(--navy);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
-            padding: 10px 18px;
-            display: block;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--gold);
-        }
-
-        .nav-item.active > .nav-link {
-            color: var(--gold);
-        }
-
-        /* Dropdown Menu */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle::after {
-            content: '▼';
-            font-size: 10px;
-            margin-left: 6px;
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-toggle::after {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 220px;
-            border-radius: var(--border-radius-md);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-            margin-top: 8px;
-            padding: 12px 0;
-            list-style: none;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-
-        .dropdown-menu li {
-            margin: 0;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            color: var(--text-dark);
-            text-decoration: none;
-            padding: 12px 24px;
-            font-size: 14px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: var(--gold-light);
-            color: var(--navy);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
-            color: white;
-            padding: 120px 20px;
-            text-align: center;
-            animation: fadeIn 0.8s ease;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 56px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero h1 .gold-accent {
-            color: var(--gold);
-        }
-
-        .hero p {
-            font-size: 18px;
-            opacity: 0.95;
-            margin-bottom: 30px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--gold);
-            color: var(--navy);
-            padding: 14px 36px;
-            border-radius: var(--border-radius-md);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            background-color: #e6b847;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(212, 168, 67, 0.3);
-        }
-
-        /* Services Section */
-        .services-section {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            font-weight: 800;
-            color: var(--navy);
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: var(--border-radius-lg);
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-            animation: fadeUpAnimation 0.6s ease backwards;
-        }
-
-        .service-card:nth-child(1) { animation-delay: 0.1s; }
-        .service-card:nth-child(2) { animation-delay: 0.2s; }
-        .service-card:nth-child(3) { animation-delay: 0.3s; }
-        .service-card:nth-child(4) { animation-delay: 0.4s; }
-
-        .service-card:hover {
-            border-color: var(--gold);
-            box-shadow: 0 12px 32px rgba(212, 168, 67, 0.15);
-            transform: translateY(-8px);
-        }
-
-        .service-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .service-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            color: var(--navy);
-            margin-bottom: 15px;
-        }
-
-        .service-card p {
-            color: var(--text-light);
-            font-size: 15px;
-            line-height: 1.7;
-        }
-
-        /* Benefits Section */
-        .benefits-section {
-            background: linear-gradient(135deg, #f9f9f9 0%, var(--gold-light) 100%);
-            padding: 80px 20px;
-            margin-top: 80px;
-        }
-
-        .benefits-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .benefits-section h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            color: var(--navy);
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        .benefits-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .benefit-item {
-            background: white;
-            padding: 30px;
-            border-radius: var(--border-radius-md);
-            border-left: 4px solid var(--gold);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            animation: fadeUpAnimation 0.6s ease backwards;
-        }
-
-        .benefit-item:nth-child(1) { animation-delay: 0.1s; }
-        .benefit-item:nth-child(2) { animation-delay: 0.2s; }
-        .benefit-item:nth-child(3) { animation-delay: 0.3s; }
-        .benefit-item:nth-child(4) { animation-delay: 0.4s; }
-
-        .benefit-item h4 {
-            color: var(--navy);
-            margin-bottom: 12px;
-            font-size: 18px;
-        }
-
-        .benefit-item p {
-            color: var(--text-light);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* CTA Banner */
-        .cta-banner {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            margin-top: 80px;
-            border-radius: var(--border-radius-lg);
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-banner h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
-
-        .cta-banner .promo-text {
-            font-size: 28px;
-            color: var(--gold);
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .cta-banner p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-
-        .cta-phone {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: var(--gold);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--navy);
-            color: white;
-            padding: 60px 20px 30px;
-            margin-top: 80px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: var(--gold);
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section li {
-            margin-bottom: 12px;
-        }
-
-        .footer-section a {
-            color: #d9d9d9;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--gold);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 30px;
-            text-align: center;
-            font-size: 13px;
-            color: #999;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeUpAnimation {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .topbar-content {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .topbar-hours {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .nav-links {
-                gap: 5px;
-            }
-
-            .nav-link {
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
-            .section-title {
-                font-size: 32px;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-                max-width: 100%;
-            }
-
-            .cta-banner {
-                margin-left: 0;
-                margin-right: 0;
-            }
-
-            .cta-banner h2 {
-                font-size: 28px;
-            }
-
-            .cta-banner .promo-text {
-                font-size: 24px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pest Control Services | Hank's Handyman - Plano, TX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Base ─────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #1a1a2e;
+      background: #fff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Color Tokens ─────────────────────────── */
+    :root {
+      --navy: #1b3a4b;
+      --teal: #2d6375;
+      --gold: #d4a843;
+      --gold-light: #f5e6b8;
+      --cream: #fdf8ef;
+      --white: #ffffff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-500: #6b7280;
+      --gray-700: #374151;
+      --gray-900: #111827;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md: 0 4px 20px rgba(0,0,0,.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,.1);
+      --shadow-xl: 0 20px 60px rgba(0,0,0,.12);
+    }
+
+    /* ── Utility ───────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 100px 0; }
+    .text-center { text-align: center; }
+    .accent { color: var(--gold); }
+
+    /* ── Buttons ───────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: inherit; font-weight: 600; font-size: 16px;
+      padding: 16px 36px; border-radius: 100px;
+      border: none; cursor: pointer; transition: all .3s ease;
+      text-transform: none; letter-spacing: 0;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--navy);
+      box-shadow: 0 4px 16px rgba(212,168,67,.35);
+    }
+    .btn-primary:hover {
+      background: #c49a35; transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(212,168,67,.4);
+    }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 2px solid rgba(255,255,255,.4);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,.1); border-color: var(--white);
+    }
+
+    /* ── Top Bar ───────────────────────────────── */
+    .topbar {
+      background: var(--navy); color: rgba(255,255,255,.85);
+      font-size: 14px; padding: 10px 0;
+    }
+    .topbar-inner {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+    }
+    .topbar a { color: var(--gold); font-weight: 600; }
+    .topbar a:hover { color: var(--gold-light); }
+
+    /* ── Navigation ────────────────────────────── */
+    .navbar {
+      background: var(--white); position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 1px 0 var(--gray-200);
+      transition: box-shadow .3s;
+    }
+    .navbar.scrolled { box-shadow: var(--shadow-md); }
+    .navbar-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 80px;
+    }
+    .navbar-logo img { height: 52px; width: auto; }
+    .navbar-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .navbar-links a {
+      font-size: 15px; font-weight: 500; color: var(--gray-700);
+      transition: color .2s; position: relative;
+    }
+    .navbar-links a:hover { color: var(--navy); }
+    .navbar-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+      background: var(--gold); transition: width .3s;
+    }
+    .navbar-links a:hover::after { width: 100%; }
+
+    /* ── Dropdowns ─────────────────────────────── */
+    .navbar-links li { position: relative; }
+    .navbar-links li .dropdown {
+      position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%);
+      min-width: 220px; background: var(--white); border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-lg); padding: 12px 0; opacity: 0; visibility: hidden;
+      transition: opacity .25s ease, transform .25s ease; transform: translateX(-50%) translateY(8px);
+      z-index: 200;
+    }
+    .navbar-links li .dropdown::before {
+      content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+      border: 8px solid transparent; border-bottom-color: var(--white);
+    }
+    .navbar-links li:hover .dropdown {
+      opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+    }
+    .navbar-links li .dropdown a {
+      display: block; padding: 10px 24px; font-size: 14px; font-weight: 500;
+      color: var(--gray-700); transition: all .2s; white-space: nowrap;
+    }
+    .navbar-links li .dropdown a::after { display: none; }
+    .navbar-links li .dropdown a:hover {
+      background: var(--cream); color: var(--navy); padding-left: 28px;
+    }
+    .has-dropdown > a { display: flex; align-items: center; gap: 4px; }
+    .has-dropdown > a .dd-arrow {
+      display: inline-block; font-size: 10px; transition: transform .25s; margin-left: 2px;
+    }
+    .has-dropdown:hover > a .dd-arrow { transform: rotate(180deg); }
+
+    .navbar-links li.active > a {
+      color: var(--gold);
+    }
+    .navbar-links li.active > a::after {
+      width: 100%;
+    }
+
+    .navbar-cta .btn { padding: 12px 28px; font-size: 14px; }
+    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .mobile-toggle span {
+      display: block; width: 24px; height: 2px; background: var(--navy);
+      margin: 6px 0; transition: all .3s; border-radius: 2px;
+    }
+
+    /* ── Hero ──────────────────────────────────── */
+    .hero {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+      padding: 100px 0 120px;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: url('https://callhanks.com/wp-content/uploads/2022/08/Plano-2.jpeg') center/cover;
+      opacity: .12;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 80px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80'%3E%3Cpath fill='%23ffffff' d='M0,80 L0,40 Q720,0 1440,40 L1440,80 Z'/%3E%3C/svg%3E") no-repeat bottom/cover;
+    }
+    .hero-content {
+      position: relative; z-index: 1; text-align: center;
+    }
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 800;
+      color: var(--white); line-height: 1.1; margin: 20px 0 24px;
+    }
+    .hero-content p {
+      font-size: 18px; color: rgba(255,255,255,.8); margin-bottom: 36px;
+      max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.7;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+    /* ── Services Section ──────────────────────── */
+    .services-section {
+      padding: 100px 0;
+    }
+    .services-section h2 {
+      font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 800;
+      color: var(--navy); margin: 16px 0 60px; text-align: center;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;
+      max-width: 900px; margin: 0 auto;
+    }
+    .service-card {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: var(--radius); padding: 40px 32px;
+      text-align: center; transition: all .3s;
+      animation: fadeUpAnimation 0.6s ease backwards;
+    }
+    .service-card:nth-child(1) { animation-delay: 0.1s; }
+    .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .service-card:nth-child(3) { animation-delay: 0.3s; }
+    .service-card:nth-child(4) { animation-delay: 0.4s; }
+
+    .service-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 12px 32px rgba(212, 168, 67, 0.15);
+      transform: translateY(-8px);
+    }
+    .service-icon {
+      font-size: 48px; margin-bottom: 20px; display: block;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif; font-size: 24px;
+      color: var(--navy); margin-bottom: 15px;
+    }
+    .service-card p {
+      color: var(--gray-500); font-size: 15px; line-height: 1.7;
+    }
+
+    /* ── Benefits Section ──────────────────────── */
+    .benefits-section {
+      background: linear-gradient(135deg, var(--gray-50) 0%, var(--gold-light) 100%);
+      padding: 100px 0;
+    }
+    .benefits-section h2 {
+      font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 800;
+      color: var(--navy); margin: 16px 0 60px; text-align: center;
+    }
+    .benefits-list {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;
+    }
+    .benefit-item {
+      background: var(--white); padding: 30px; border-radius: var(--radius-sm);
+      border-left: 4px solid var(--gold);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      animation: fadeUpAnimation 0.6s ease backwards;
+    }
+    .benefit-item:nth-child(1) { animation-delay: 0.1s; }
+    .benefit-item:nth-child(2) { animation-delay: 0.2s; }
+    .benefit-item:nth-child(3) { animation-delay: 0.3s; }
+    .benefit-item:nth-child(4) { animation-delay: 0.4s; }
+
+    .benefit-item h4 {
+      color: var(--navy); margin-bottom: 12px; font-size: 18px; font-weight: 700;
+    }
+    .benefit-item p {
+      color: var(--gray-500); font-size: 14px; line-height: 1.6;
+    }
+
+    /* ── CTA Banner ───────────────────────────── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+      padding: 80px 0; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; width: 400px; height: 400px;
+      background: var(--gold); border-radius: 50%; opacity: .06;
+      top: -100px; right: -100px;
+    }
+    .cta-banner::after {
+      content: ''; position: absolute; width: 300px; height: 300px;
+      background: var(--gold); border-radius: 50%; opacity: .04;
+      bottom: -80px; left: -60px;
+    }
+    .cta-banner h2 {
+      font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 800;
+      color: var(--white); margin-bottom: 16px; position: relative; z-index: 1;
+    }
+    .cta-banner p {
+      font-size: 18px; color: rgba(255,255,255,.8); margin-bottom: 36px;
+      position: relative; z-index: 1;
+    }
+    .cta-promo {
+      display: inline-block; background: var(--gold); color: var(--navy);
+      padding: 12px 32px; border-radius: 100px; font-weight: 700; font-size: 18px;
+      margin-bottom: 24px; position: relative; z-index: 1;
+    }
+    .cta-banner .btn { position: relative; z-index: 1; }
+
+    /* ── Footer ────────────────────────────────── */
+    .footer {
+      background: var(--gray-900); color: rgba(255,255,255,.7);
+      padding: 72px 0 0;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+      padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .footer-brand img { height: 48px; margin-bottom: 16px; filter: brightness(10); }
+    .footer-brand p { font-size: 15px; line-height: 1.7; max-width: 320px; }
+    .footer h4 {
+      color: var(--white); font-size: 15px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
+    }
+    .footer ul { list-style: none; }
+    .footer ul li { margin-bottom: 12px; }
+    .footer ul a { font-size: 15px; transition: color .2s; }
+    .footer ul a:hover { color: var(--gold); }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 16px; font-size: 15px; }
+    .footer-contact-icon { font-size: 16px; margin-top: 3px; }
+    .footer-bottom {
+      padding: 24px 0; display: flex; justify-content: space-between; align-items: center;
+      font-size: 14px; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center;
+      font-size: 16px; transition: all .2s;
+    }
+    .footer-social a:hover { background: var(--gold); color: var(--navy); }
+
+    /* ── Animations ────────────────────────────── */
+    @keyframes fadeUpAnimation {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Responsive ────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-content h1 { font-size: 44px; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .topbar-inner { flex-direction: column; gap: 12px; }
+      .navbar-inner { height: auto; padding: 16px 0; }
+      .navbar-links { display: none; gap: 16px; }
+      .navbar-links.show { display: flex; flex-direction: column; width: 100%; }
+      .mobile-toggle { display: block; }
+      .navbar-cta { display: none; }
+
+      .hero-content h1 { font-size: 36px; }
+      .hero-content p { font-size: 16px; }
+      .hero-buttons { flex-direction: column; }
+
+      .services-section h2 { font-size: 32px; }
+      .benefits-list { grid-template-columns: 1fr; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Top Bar -->
-    <div class="topbar">
-        <div class="topbar-content">
-            <div class="topbar-hours">
-                <span>📅 Mon-Fri, 8am-5pm</span>
-            </div>
-            <div class="topbar-phone">☎️ (469) 304-0535</div>
-        </div>
+  <!-- ─── Top Bar ──────────────────────────────── -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>Monday – Friday: 8am – 5pm | 24/7 Emergency Service</span>
+      <span>Call Now: <a href="tel:4693040535">(469) 304-0535</a></span>
     </div>
+  </div>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">
-                <a href="hanks-plano-modern.html" style="text-decoration: none; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--navy);">Hank's <span style="color: var(--gold);">Handyman</span></a>
-            </div>
-            <ul class="nav-links">
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">Handyman</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="handyman.html#carpentry">Carpentry Repairs</a></li>
-                        <li><a href="handyman.html#doors">Door Repairs</a></li>
-                        <li><a href="handyman.html#hanging">Hanging & Assembly</a></li>
-                        <li><a href="handyman.html#appliance">Appliance Install</a></li>
-                        <li><a href="handyman.html#painting">Painting Services</a></li>
-                        <li><a href="handyman.html#sheetrock">Sheetrock & Tile</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown active">
-                    <a href="#" class="nav-link dropdown-toggle">Pest Control</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#general">General Pest Control</a></li>
-                        <li><a href="#termite">Termite Protection</a></li>
-                        <li><a href="#rodent">Rodent Control</a></li>
-                        <li><a href="#mosquito">Mosquito Treatment</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">Lawn Care</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="lawncare.html#mowing">Mowing & Edging</a></li>
-                        <li><a href="lawncare.html#fertilization">Fertilization & Weed Control</a></li>
-                        <li><a href="lawncare.html#aeration">Aeration & Seeding</a></li>
-                        <li><a href="lawncare.html#cleanup">Seasonal Cleanup</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">Outdoor</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="outdoor.html#washing">Pressure Washing</a></li>
-                        <li><a href="outdoor.html#gutters">Gutter Cleaning</a></li>
-                        <li><a href="outdoor.html#fencing">Fencing & Gates</a></li>
-                        <li><a href="outdoor.html#decks">Decks & Patios</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="hanks-plano-modern.html#contact" class="nav-link">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Professional <span class="gold-accent">Pest Control</span> Services</h1>
-            <p>Protect your home and business with expert pest management solutions. Fast response, proven results, peace of mind.</p>
-            <a href="hanks-plano-modern.html#contact" class="cta-button">Get Your Free Inspection</a>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services-section">
-        <h2 class="section-title">Our Pest Control Services</h2>
-        <div class="services-grid">
-            <div class="service-card" id="general">
-                <span class="service-icon">🐛</span>
-                <h3>General Pest Control</h3>
-                <p>Complete protection against common household pests including ants, cockroaches, spiders, and more. Our comprehensive treatments use safe, effective methods to eliminate infestations and prevent future problems.</p>
-            </div>
-            <div class="service-card" id="termite">
-                <span class="service-icon">🪵</span>
-                <h3>Termite Protection</h3>
-                <p>Safeguard your property from costly termite damage with our advanced termite detection and prevention services. Annual inspections and targeted treatments keep your home protected year-round.</p>
-            </div>
-            <div class="service-card" id="rodent">
-                <span class="service-icon">🐭</span>
-                <h3>Rodent Control</h3>
-                <p>Eliminate rats and mice with our effective rodent control program. We remove existing populations and seal entry points to prevent re-entry, protecting your home and health.</p>
-            </div>
-            <div class="service-card" id="mosquito">
-                <span class="service-icon">🦟</span>
-                <h3>Mosquito Treatment</h3>
-                <p>Enjoy your outdoor space without mosquito hassles. Our targeted mosquito treatments eliminate breeding grounds and reduce populations, keeping your family comfortable and disease-free.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="benefits-section">
-        <div class="benefits-container">
-            <h2>Why Choose Hank's Pest Control?</h2>
-            <div class="benefits-list">
-                <div class="benefit-item">
-                    <h4>✓ Licensed & Insured</h4>
-                    <p>Fully licensed professionals with comprehensive insurance coverage for complete peace of mind.</p>
-                </div>
-                <div class="benefit-item">
-                    <h4>✓ Fast Response</h4>
-                    <p>Same-day and next-day appointments available. We understand emergencies and respond quickly.</p>
-                </div>
-                <div class="benefit-item">
-                    <h4>✓ Safe Methods</h4>
-                    <p>Eco-friendly treatments safe for families and pets. We prioritize your health and the environment.</p>
-                </div>
-                <div class="benefit-item">
-                    <h4>✓ Guaranteed Results</h4>
-                    <p>If pests return between treatments, we return at no charge. Your satisfaction is guaranteed.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Banner -->
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-        <div class="cta-banner">
-            <h2>Ready to Eliminate Your Pest Problem?</h2>
-            <div class="promo-text">$49 Off Your First Service</div>
-            <p>Schedule your professional pest inspection and treatment today</p>
-            <div class="cta-phone">(469) 304-0535</div>
-        </div>
+  <!-- ─── Navbar ──────────────────────────────── -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="hanks-plano-modern.html" class="navbar-logo">
+        <img src="https://callhanks.com/wp-content/uploads/2022/03/thumbnail_HanksLogo_RGB.webp" alt="Hank's Handyman Logo">
+      </a>
+      <ul class="navbar-links">
+        <li class="has-dropdown">
+          <a href="handyman.html">Handyman <span class="dd-arrow">▼</span></a>
+          <div class="dropdown">
+            <a href="handyman.html#carpentry">Carpentry Repairs</a>
+            <a href="handyman.html#doors">Door Repairs</a>
+            <a href="handyman.html#hanging">Hanging & Assembly</a>
+            <a href="handyman.html#appliance">Appliance Install</a>
+            <a href="handyman.html#painting">Painting Services</a>
+            <a href="handyman.html#sheetrock">Sheetrock & Tile</a>
+          </div>
+        </li>
+        <li class="has-dropdown active">
+          <a href="pest-control.html">Pest Control <span class="dd-arrow">▼</span></a>
+          <div class="dropdown">
+            <a href="pest-control.html#general">General Pest Control</a>
+            <a href="pest-control.html#termite">Termite Protection</a>
+            <a href="pest-control.html#rodent">Rodent Control</a>
+            <a href="pest-control.html#mosquito">Mosquito Treatment</a>
+          </div>
+        </li>
+        <li class="has-dropdown">
+          <a href="lawncare.html">Lawn Care <span class="dd-arrow">▼</span></a>
+          <div class="dropdown">
+            <a href="lawncare.html#mowing">Mowing & Edging</a>
+            <a href="lawncare.html#fertilization">Fertilization & Weed Control</a>
+            <a href="lawncare.html#aeration">Aeration & Seeding</a>
+            <a href="lawncare.html#seasonal">Seasonal Cleanup</a>
+          </div>
+        </li>
+        <li class="has-dropdown">
+          <a href="outdoor.html">Outdoor <span class="dd-arrow">▼</span></a>
+          <div class="dropdown">
+            <a href="outdoor.html#pressure">Pressure Washing</a>
+            <a href="outdoor.html#gutters">Gutter Cleaning</a>
+            <a href="outdoor.html#fencing">Fencing & Gates</a>
+            <a href="outdoor.html#decks">Decks & Patios</a>
+          </div>
+        </li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="hanks-plano-modern.html#office">Office</a></li>
+        <li><a href="hanks-plano-modern.html#contact">Contact</a></li>
+      </ul>
+      <div class="navbar-cta">
+        <a href="tel:4693040535" class="btn btn-primary">Call (469) 304-0535</a>
+      </div>
+      <button class="mobile-toggle" aria-label="Menu" onclick="document.querySelector('.navbar-links').classList.toggle('show')">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </nav>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="#general">General Pest Control</a></li>
-                        <li><a href="#termite">Termite Protection</a></li>
-                        <li><a href="#rodent">Rodent Control</a></li>
-                        <li><a href="#mosquito">Mosquito Treatment</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="hanks-plano-modern.html#contact">Contact</a></li>
-                        <li><a href="hanks-plano-modern.html">Home</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Service Areas</h4>
-                    <ul>
-                        <li>Plano, TX</li>
-                        <li>Dallas Area</li>
-                        <li>Surrounding Communities</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <ul>
-                        <li><a href="tel:4693040535">(469) 304-0535</a></li>
-                        <li>Mon-Fri, 8am-5pm</li>
-                        <li><a href="hanks-plano-modern.html#contact">Get a Quote</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Hank's Handyman Services. All rights reserved. | Professional Home & Lawn Services in Plano, TX</p>
-            </div>
+  <!-- ─── Hero ────────────────────────────────── -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Professional <span class="accent">Pest Control</span> Services</h1>
+      <p>Protect your home and business with expert pest management solutions. Fast response, proven results, peace of mind.</p>
+      <div class="hero-buttons">
+        <a href="tel:4693040535" class="btn btn-primary">Get Your Free Inspection</a>
+        <a href="#services" class="btn btn-outline">View Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Services Section ────────────────────── -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <h2>Our Pest Control Services</h2>
+      <div class="services-grid">
+        <div class="service-card" id="general">
+          <span class="service-icon">🐛</span>
+          <h3>General Pest Control</h3>
+          <p>Complete protection against common household pests including ants, cockroaches, spiders, and more. Our comprehensive treatments use safe, effective methods to eliminate infestations and prevent future problems.</p>
         </div>
-    </footer>
+        <div class="service-card" id="termite">
+          <span class="service-icon">🪵</span>
+          <h3>Termite Protection</h3>
+          <p>Safeguard your property from costly termite damage with our advanced termite detection and prevention services. Annual inspections and targeted treatments keep your home protected year-round.</p>
+        </div>
+        <div class="service-card" id="rodent">
+          <span class="service-icon">🐭</span>
+          <h3>Rodent Control</h3>
+          <p>Eliminate rats and mice with our effective rodent control program. We remove existing populations and seal entry points to prevent re-entry, protecting your home and health.</p>
+        </div>
+        <div class="service-card" id="mosquito">
+          <span class="service-icon">🦟</span>
+          <h3>Mosquito Treatment</h3>
+          <p>Enjoy your outdoor space without mosquito hassles. Our targeted mosquito treatments eliminate breeding grounds and reduce populations, keeping your family comfortable and disease-free.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Benefits Section ────────────────────── -->
+  <section class="benefits-section">
+    <div class="container">
+      <h2>Why Choose Hank's Pest Control?</h2>
+      <div class="benefits-list">
+        <div class="benefit-item">
+          <h4>✓ Licensed & Insured</h4>
+          <p>Fully licensed professionals with comprehensive insurance coverage for complete peace of mind.</p>
+        </div>
+        <div class="benefit-item">
+          <h4>✓ Fast Response</h4>
+          <p>Same-day and next-day appointments available. We understand emergencies and respond quickly.</p>
+        </div>
+        <div class="benefit-item">
+          <h4>✓ Safe Methods</h4>
+          <p>Eco-friendly treatments safe for families and pets. We prioritize your health and the environment.</p>
+        </div>
+        <div class="benefit-item">
+          <h4>✓ Guaranteed Results</h4>
+          <p>If pests return between treatments, we return at no charge. Your satisfaction is guaranteed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA Banner ──────────────────────────── -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Ready to Eliminate Your Pest Problem?</h2>
+      <div class="cta-promo">$49 Off Your First Service</div>
+      <p>Schedule your professional pest inspection and treatment today</p>
+      <a href="tel:4693040535" class="btn btn-primary">Call (469) 304-0535</a>
+    </div>
+  </section>
+
+  <!-- ─── Footer ──────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="https://callhanks.com/wp-content/uploads/2022/03/thumbnail_HanksLogo_RGB.webp" alt="Hank's Handyman Logo">
+          <p>Hank's Handyman is your trusted local partner for professional home and pest control services in Plano, TX. We've been serving the DFW area since 2019 with quality craftsmanship and reliability.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="pest-control.html#general">General Pest Control</a></li>
+            <li><a href="pest-control.html#termite">Termite Protection</a></li>
+            <li><a href="pest-control.html#rodent">Rodent Control</a></li>
+            <li><a href="pest-control.html#mosquito">Mosquito Treatment</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Service Area</h4>
+          <ul>
+            <li><a href="hanks-plano-modern.html">Plano, TX</a></li>
+            <li><a href="hanks-plano-modern.html">Dallas Area</a></li>
+            <li><a href="hanks-plano-modern.html">Surrounding Communities</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon">📞</span>
+            <a href="tel:4693040535">(469) 304-0535</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon">⏰</span>
+            <span>Mon-Fri, 8am-5pm</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon">✉️</span>
+            <a href="hanks-plano-modern.html#contact">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Hank's Handyman Services. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="#" title="Facebook">f</a>
+          <a href="#" title="Instagram">📷</a>
+          <a href="#" title="Google">G</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Intersection Observer for fade-up animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>

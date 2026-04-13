@@ -1,669 +1,574 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lawn Care Services | Hank's Handyman - Plano, TX</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --navy: #1b3a4b;
-            --teal: #2d6375;
-            --gold: #d4a843;
-            --gold-light: #f5e6b8;
-            --cream: #fdf8ef;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--navy);
-            background-color: #ffffff;
-            line-height: 1.6;
-        }
-
-        /* Topbar */
-        .topbar {
-            background-color: var(--navy);
-            color: white;
-            padding: 12px 20px;
-            font-size: 14px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .topbar-left {
-            display: flex;
-            gap: 30px;
-        }
-
-        .topbar-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .topbar-phone {
-            color: var(--gold);
-            font-weight: 600;
-        }
-
-        /* Navbar */
-        .navbar {
-            background-color: #ffffff;
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar-logo {
-            height: 50px;
-            width: auto;
-        }
-
-        .navbar-menu {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-            align-items: center;
-        }
-
-        .navbar-item {
-            position: relative;
-        }
-
-        .navbar-link {
-            text-decoration: none;
-            color: var(--navy);
-            font-weight: 500;
-            font-size: 15px;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .navbar-link:hover {
-            color: var(--gold);
-        }
-
-        .dropdown-toggle::after {
-            content: '▼';
-            font-size: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .navbar-item:hover .dropdown-toggle::after {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 12px 0;
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            margin-top: 8px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar-item:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-item {
-            padding: 12px 20px;
-            color: var(--navy);
-            text-decoration: none;
-            display: block;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .dropdown-item:hover {
-            background-color: var(--gold-light);
-            color: var(--navy);
-            padding-left: 24px;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
-            color: white;
-            padding: 100px 20px;
-            text-align: center;
-            animation: fadeUp 0.8s ease;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 56px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero .gold-accent {
-            color: var(--gold);
-        }
-
-        .hero p {
-            font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0.95;
-        }
-
-        /* Services Section */
-        .services-section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            color: var(--navy);
-            margin-bottom: 50px;
-            text-align: center;
-            animation: fadeUp 0.8s ease 0.1s both;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-bottom: 50px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .service-card {
-            background-color: var(--cream);
-            padding: 40px 30px;
-            border-radius: 16px;
-            text-align: center;
-            transition: all 0.3s ease;
-            animation: fadeUp 0.8s ease forwards;
-            opacity: 0;
-        }
-
-        .service-card:nth-child(1) { animation-delay: 0.2s; }
-        .service-card:nth-child(2) { animation-delay: 0.3s; }
-        .service-card:nth-child(3) { animation-delay: 0.4s; }
-        .service-card:nth-child(4) { animation-delay: 0.5s; }
-
-        .service-card:hover {
-            background: linear-gradient(135deg, var(--cream) 0%, #fff5e6 100%);
-            transform: translateY(-8px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-        }
-
-        .service-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .service-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            color: var(--navy);
-            margin-bottom: 16px;
-        }
-
-        .service-card p {
-            color: #555;
-            font-size: 15px;
-            line-height: 1.8;
-        }
-
-        /* Benefits Section */
-        .benefits-section {
-            background-color: var(--cream);
-            padding: 80px 20px;
-        }
-
-        .benefits-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .benefit-item {
-            animation: fadeUp 0.8s ease forwards;
-            opacity: 0;
-        }
-
-        .benefit-item:nth-child(1) { animation-delay: 0.2s; }
-        .benefit-item:nth-child(2) { animation-delay: 0.3s; }
-        .benefit-item:nth-child(3) { animation-delay: 0.4s; }
-        .benefit-item:nth-child(4) { animation-delay: 0.5s; }
-
-        .benefit-icon {
-            font-size: 36px;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .benefit-item h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            color: var(--navy);
-            margin-bottom: 10px;
-        }
-
-        .benefit-item p {
-            color: #666;
-            font-size: 14px;
-        }
-
-        /* CTA Banner */
-        .cta-banner {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            animation: fadeUp 0.8s ease;
-        }
-
-        .cta-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            margin-bottom: 20px;
-        }
-
-        .cta-content .gold-accent {
-            color: var(--gold);
-        }
-
-        .cta-content p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--gold);
-            color: var(--navy);
-            padding: 16px 40px;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            margin: 0 10px;
-        }
-
-        .cta-button:hover {
-            background-color: var(--gold-light);
-            transform: scale(1.05);
-        }
-
-        .cta-button.secondary {
-            background-color: transparent;
-            border: 2px solid var(--gold);
-            color: var(--gold);
-        }
-
-        .cta-button.secondary:hover {
-            background-color: var(--gold);
-            color: var(--navy);
-        }
-
-        /* Footer */
-        .footer {
-            background-color: var(--navy);
-            color: white;
-            padding: 50px 20px 30px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: var(--gold);
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .footer-section a:hover {
-            color: var(--gold);
-        }
-
-        .footer-contact {
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .footer-contact .phone {
-            color: var(--gold);
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .footer-divider {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding-top: 30px;
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            font-size: 13px;
-            color: #999;
-        }
-
-        .footer-logo {
-            height: 40px;
-            width: auto;
-        }
-
-        /* Animations */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .topbar {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-
-            .topbar-left {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .navbar {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .navbar-menu {
-                flex-direction: column;
-                gap: 15px;
-                width: 100%;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .section-title {
-                font-size: 32px;
-            }
-
-            .cta-content h2 {
-                font-size: 28px;
-            }
-
-            .cta-button {
-                display: block;
-                margin-bottom: 10px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lawn Care Services | Hank's Handyman | Plano, TX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Base ─────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #1a1a2e;
+      background: #fff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Color Tokens ─────────────────────────── */
+    :root {
+      --navy: #1b3a4b;
+      --teal: #2d6375;
+      --gold: #d4a843;
+      --gold-light: #f5e6b8;
+      --cream: #fdf8ef;
+      --white: #ffffff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-500: #6b7280;
+      --gray-700: #374151;
+      --gray-900: #111827;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md: 0 4px 20px rgba(0,0,0,.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,.1);
+      --shadow-xl: 0 20px 60px rgba(0,0,0,.12);
+    }
+
+    /* ── Utility ───────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 100px 0; }
+    .text-center { text-align: center; }
+    .accent { color: var(--gold); }
+
+    /* ── Top Bar ───────────────────────────────── */
+    .topbar {
+      background: var(--navy); color: rgba(255,255,255,.85);
+      font-size: 14px; padding: 10px 0;
+    }
+    .topbar-inner {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    }
+    .topbar a { color: var(--gold); font-weight: 600; }
+    .topbar a:hover { color: var(--gold-light); }
+
+    /* ── Navigation ────────────────────────────── */
+    .navbar {
+      background: var(--white); position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 1px 0 var(--gray-200);
+      transition: box-shadow .3s;
+    }
+    .navbar.scrolled { box-shadow: var(--shadow-md); }
+    .navbar-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 80px; max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    }
+    .navbar-logo img { height: 52px; width: auto; }
+    .navbar-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .navbar-links a {
+      font-size: 15px; font-weight: 500; color: var(--gray-700);
+      transition: color .2s; position: relative;
+    }
+    .navbar-links a:hover { color: var(--navy); }
+    .navbar-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+      background: var(--gold); transition: width .3s;
+    }
+    .navbar-links a:hover::after { width: 100%; }
+
+    /* ── Dropdowns ─────────────────────────────── */
+    .navbar-links li { position: relative; }
+    .navbar-links li .dropdown {
+      position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%);
+      min-width: 220px; background: var(--white); border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-lg); padding: 12px 0; opacity: 0; visibility: hidden;
+      transition: opacity .25s ease, transform .25s ease; transform: translateX(-50%) translateY(8px);
+      z-index: 200;
+    }
+    .navbar-links li .dropdown::before {
+      content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+      border: 8px solid transparent; border-bottom-color: var(--white);
+    }
+    .navbar-links li:hover .dropdown {
+      opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+    }
+    .navbar-links li .dropdown a {
+      display: block; padding: 10px 24px; font-size: 14px; font-weight: 500;
+      color: var(--gray-700); transition: all .2s; white-space: nowrap;
+    }
+    .navbar-links li .dropdown a::after { display: none; }
+    .navbar-links li .dropdown a:hover {
+      background: var(--cream); color: var(--navy); padding-left: 28px;
+    }
+    .navbar-links li.active > a {
+      color: var(--gold); font-weight: 600;
+    }
+    .has-dropdown > a { display: flex; align-items: center; gap: 4px; }
+    .has-dropdown > a .dd-arrow {
+      display: inline-block; font-size: 10px; transition: transform .25s; margin-left: 2px;
+    }
+    .has-dropdown:hover > a .dd-arrow { transform: rotate(180deg); }
+
+    .navbar-cta .btn { padding: 12px 28px; font-size: 14px; }
+    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .mobile-toggle span {
+      display: block; width: 24px; height: 2px; background: var(--navy);
+      margin: 6px 0; transition: all .3s; border-radius: 2px;
+    }
+
+    /* ── Buttons ───────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: inherit; font-weight: 600; font-size: 16px;
+      padding: 16px 36px; border-radius: 100px;
+      border: none; cursor: pointer; transition: all .3s ease;
+      text-transform: none; letter-spacing: 0;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--navy);
+      box-shadow: 0 4px 16px rgba(212,168,67,.35);
+    }
+    .btn-primary:hover {
+      background: #c49a35; transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(212,168,67,.4);
+    }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 2px solid rgba(255,255,255,.4);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,.1); border-color: var(--white);
+    }
+
+    /* ── Hero ──────────────────────────────────── */
+    .hero {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+      padding: 100px 0 120px;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: url('https://callhanks.com/wp-content/uploads/2022/08/Plano-2.jpeg') center/cover;
+      opacity: .12;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 80px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80'%3E%3Cpath fill='%23ffffff' d='M0,80 L0,40 Q720,0 1440,40 L1440,80 Z'/%3E%3C/svg%3E") no-repeat bottom/cover;
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+    }
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 800;
+      color: var(--white); line-height: 1.1; margin: 0 0 24px;
+      animation: fadeUp 0.8s ease;
+    }
+    .hero-content p {
+      font-size: 18px; color: rgba(255,255,255,.8); margin-bottom: 36px;
+      max-width: 700px; line-height: 1.7;
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.8s ease 0.2s both; }
+
+    /* ── Services Section ──────────────────────── */
+    .services-section {
+      padding: 100px 0;
+    }
+    .services-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 800;
+      color: var(--navy); margin-bottom: 60px; text-align: center;
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px; margin-bottom: 0;
+    }
+    .service-card {
+      background: var(--white); border: 2px solid var(--gray-200);
+      padding: 40px 30px; border-radius: var(--radius);
+      text-align: center; transition: all 0.3s ease;
+      animation: fadeUp 0.8s ease forwards; opacity: 0;
+    }
+    .service-card:nth-child(1) { animation-delay: 0.2s; }
+    .service-card:nth-child(2) { animation-delay: 0.3s; }
+    .service-card:nth-child(3) { animation-delay: 0.4s; }
+    .service-card:nth-child(4) { animation-delay: 0.5s; }
+    .service-card:hover {
+      transform: translateY(-8px); border-color: var(--gold);
+      box-shadow: 0 20px 40px rgba(212,168,67,.15);
+    }
+    .service-icon {
+      font-size: 48px; margin-bottom: 20px; display: block;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700;
+      color: var(--navy); margin-bottom: 16px;
+    }
+    .service-card p {
+      color: var(--gray-700); font-size: 15px; line-height: 1.7;
+    }
+
+    /* ── Benefits Section ──────────────────────── */
+    .benefits-section {
+      background: var(--cream); padding: 100px 0;
+    }
+    .benefits-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    }
+    .benefits-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px; margin-top: 50px;
+    }
+    .benefit-item {
+      position: relative; padding-left: 0; animation: fadeUp 0.8s ease forwards; opacity: 0;
+    }
+    .benefit-item:nth-child(1) { animation-delay: 0.2s; }
+    .benefit-item:nth-child(2) { animation-delay: 0.3s; }
+    .benefit-item:nth-child(3) { animation-delay: 0.4s; }
+    .benefit-item:nth-child(4) { animation-delay: 0.5s; }
+    .benefit-item::before {
+      content: ''; position: absolute; left: 0; top: 0; width: 4px; height: 40px;
+      background: var(--gold); border-radius: 2px;
+    }
+    .benefit-item h4 {
+      font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700;
+      color: var(--navy); margin-bottom: 10px;
+    }
+    .benefit-item p {
+      color: var(--gray-700); font-size: 14px;
+    }
+    .benefit-icon {
+      font-size: 32px; margin-bottom: 12px; display: block;
+    }
+
+    /* ── CTA Banner ────────────────────────────── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+      color: white; padding: 80px 0; text-align: center;
+      animation: fadeUp 0.8s ease;
+    }
+    .cta-content {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    }
+    .cta-content h2 {
+      font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 800;
+      margin-bottom: 20px;
+    }
+    .cta-content p {
+      font-size: 18px; margin-bottom: 40px; opacity: 0.95;
+    }
+    .cta-buttons {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    }
+    .cta-button {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--gold); color: var(--navy);
+      padding: 16px 40px; border-radius: 100px;
+      font-weight: 600; font-size: 16px; transition: all 0.3s ease;
+      border: 2px solid var(--gold);
+      box-shadow: 0 4px 16px rgba(212,168,67,.35);
+    }
+    .cta-button:hover {
+      background: #c49a35; transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(212,168,67,.4);
+    }
+    .cta-button.secondary {
+      background: transparent; color: var(--gold); border: 2px solid var(--gold);
+    }
+    .cta-button.secondary:hover {
+      background: var(--gold); color: var(--navy);
+    }
+
+    /* ── Footer ────────────────────────────────── */
+    .footer {
+      background: #111827; color: white; padding: 50px 0 30px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px; margin-bottom: 40px;
+    }
+    .footer-section h4 {
+      font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700;
+      margin-bottom: 20px; color: var(--gold);
+    }
+    .footer-section p, .footer-section li {
+      font-size: 14px; color: rgba(255,255,255,.7); margin-bottom: 10px;
+    }
+    .footer-section ul { list-style: none; }
+    .footer-section a {
+      color: rgba(255,255,255,.7); transition: color 0.3s ease; display: inline;
+    }
+    .footer-section a:hover { color: var(--gold); }
+    .footer-contact .phone {
+      color: var(--gold); font-weight: 600; font-size: 16px; display: block;
+    }
+    .footer-divider {
+      border-top: 1px solid rgba(255,255,255,.1); padding-top: 30px;
+    }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 20px; font-size: 13px; color: rgba(255,255,255,.6);
+    }
+    .footer-logo { height: 40px; width: auto; }
+
+    /* ── Animations ────────────────────────────── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Responsive ────────────────────────────── */
+    @media (max-width: 768px) {
+      .topbar-inner { flex-direction: column; gap: 10px; text-align: center; }
+      .navbar-inner { flex-direction: column; gap: 20px; height: auto; }
+      .navbar-links { flex-direction: column; gap: 15px; width: 100%; }
+      .hero-content h1 { font-size: 36px; }
+      .section-title { font-size: 32px; }
+      .cta-content h2 { font-size: 28px; }
+      .cta-buttons { flex-direction: column; }
+      .cta-button { width: 100%; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Topbar -->
-    <div class="topbar">
-        <div class="topbar-left">
-            <div class="topbar-item">
-                <span>Mon-Fri: 8am - 5pm</span>
-            </div>
-            <div class="topbar-item">
-                <span>📞</span>
-                <span class="topbar-phone">(469) 304-0535</span>
-            </div>
-        </div>
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div>Monday – Friday: 8am – 5pm | 24/7 Emergency Service</div>
+      <a href="tel:(469)304-0535">Call Now: (469) 304-0535</a>
     </div>
+  </div>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <a href="hanks-plano-modern.html" style="text-decoration: none; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--navy);">Hank's <span style="color: var(--gold);">Handyman</span></a>
-        <ul class="navbar-menu">
-            <li class="navbar-item">
-                <a href="#" class="navbar-link dropdown-toggle">Handyman</a>
-                <div class="dropdown-menu">
-                    <a href="handyman.html#carpentry" class="dropdown-item">Carpentry Repairs</a>
-                    <a href="handyman.html#doors" class="dropdown-item">Door Repairs</a>
-                    <a href="handyman.html#hanging" class="dropdown-item">Hanging & Assembly</a>
-                    <a href="handyman.html#appliance" class="dropdown-item">Appliance Install</a>
-                    <a href="handyman.html#painting" class="dropdown-item">Painting Services</a>
-                    <a href="handyman.html#sheetrock" class="dropdown-item">Sheetrock & Tile</a>
-                </div>
-            </li>
-            <li class="navbar-item">
-                <a href="#" class="navbar-link dropdown-toggle">Pest Control</a>
-                <div class="dropdown-menu">
-                    <a href="pest-control.html#general" class="dropdown-item">General Pest Control</a>
-                    <a href="pest-control.html#termite" class="dropdown-item">Termite Protection</a>
-                    <a href="pest-control.html#rodent" class="dropdown-item">Rodent Control</a>
-                    <a href="pest-control.html#mosquito" class="dropdown-item">Mosquito Treatment</a>
-                </div>
-            </li>
-            <li class="navbar-item">
-                <a href="lawncare.html" class="navbar-link dropdown-toggle">Lawn Care</a>
-                <div class="dropdown-menu">
-                    <a href="lawncare.html#mowing" class="dropdown-item">Mowing & Edging</a>
-                    <a href="lawncare.html#fertilization" class="dropdown-item">Fertilization & Weed Control</a>
-                    <a href="lawncare.html#aeration" class="dropdown-item">Aeration & Seeding</a>
-                    <a href="lawncare.html#seasonal" class="dropdown-item">Seasonal Cleanup</a>
-                </div>
-            </li>
-            <li class="navbar-item">
-                <a href="#" class="navbar-link dropdown-toggle">Outdoor</a>
-                <div class="dropdown-menu">
-                    <a href="outdoor.html#pressure-washing" class="dropdown-item">Pressure Washing</a>
-                    <a href="outdoor.html#gutters" class="dropdown-item">Gutter Cleaning</a>
-                    <a href="outdoor.html#fencing" class="dropdown-item">Fencing & Gates</a>
-                    <a href="outdoor.html#decks" class="dropdown-item">Decks & Patios</a>
-                </div>
-            </li>
-            <li class="navbar-item">
-                <a href="about.html" class="navbar-link">About</a>
-            </li>
-            <li class="navbar-item">
-                <a href="hanks-plano-modern.html#contact" class="navbar-link">Contact</a>
-            </li>
-        </ul>
-    </nav>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <div class="navbar-logo">
+        <img src="https://callhanks.com/wp-content/uploads/2022/03/thumbnail_HanksLogo_RGB.webp" alt="Hank's Handyman Logo">
+      </div>
+      <ul class="navbar-links">
+        <li class="has-dropdown">
+          <a href="#">Handyman <span class="dd-arrow">▼</span></a>
+          <div class="dropdown">
+            <a href="handyman.html#carpentry">Carpentry Repairs</a>
+            <a href="handyman.html#doors">Door Repairs</a>
+            <a href="handyman.html#hanging">Hanging & Assembly</a>
+            <a href="handyman.html#appliance">Appliance Install</a>
+            <a href="handyman.html#painting">Painting Services</a>
+            <a href="handyman.html#sheetrock">Sheetrock & Tile</a>
+          </div>
+        </li>
+        <li class="has-dropdown">
+          <a href="#">Pest Control <span class="dd-arrow">▼</span></a>
+          <div class="dropdown">
+            <a href="pest-control.html#general">General Pest Control</a>
+            <a href="pest-control.html#termite">Termite Protection</a>
+            <a href="pest-control.html#rodent">Rodent Control</a>
+            <a href="pest-control.html#mosquito">Mosquito Treatment</a>
+          </div>
+        </li>
+        <li class="active has-dropdown">
+          <a href="lawncare.html">Lawn Care <span class="dd-arrow">▼</span></a>
+          <div class="dropdown">
+            <a href="lawncare.html#mowing">Mowing & Edging</a>
+            <a href="lawncare.html#fertilization">Fertilization & Weed Control</a>
+            <a href="lawncare.html#aeration">Aeration & Seeding</a>
+            <a href="lawncare.html#seasonal">Seasonal Cleanup</a>
+          </div>
+        </li>
+        <li class="has-dropdown">
+          <a href="#">Outdoor <span class="dd-arrow">▼</span></a>
+          <div class="dropdown">
+            <a href="outdoor.html#pressure-washing">Pressure Washing</a>
+            <a href="outdoor.html#gutters">Gutter Cleaning</a>
+            <a href="outdoor.html#fencing">Fencing & Gates</a>
+            <a href="outdoor.html#decks">Decks & Patios</a>
+          </div>
+        </li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="hanks-plano-modern.html#office">Office</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="navbar-cta">
+        <a href="tel:(469)304-0535" class="btn btn-primary">Call Now</a>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Professional <span class="gold-accent">Lawn Care</span></h1>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Professional <span class="accent">Lawn Care</span></h1>
         <p>Keep your Plano property looking pristine with our expert lawn maintenance and landscaping services</p>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services-section">
-        <h2 class="section-title">Our Lawn Care Services</h2>
-        <div class="services-grid">
-            <!-- Mowing & Edging -->
-            <div class="service-card" id="mowing">
-                <span class="service-icon">✂️</span>
-                <h3>Mowing & Edging</h3>
-                <p>Regular lawn mowing with precision edging to keep your grass healthy and your landscape looking sharp. We use professional-grade equipment to ensure a perfect cut every time.</p>
-            </div>
-
-            <!-- Fertilization & Weed Control -->
-            <div class="service-card" id="fertilization">
-                <span class="service-icon">🌱</span>
-                <h3>Fertilization & Weed Control</h3>
-                <p>Customized fertilization programs and targeted weed control to promote thick, green grass while eliminating unwanted weeds naturally and effectively.</p>
-            </div>
-
-            <!-- Aeration & Seeding -->
-            <div class="service-card" id="aeration">
-                <span class="service-icon">🌾</span>
-                <h3>Aeration & Seeding</h3>
-                <p>Professional aeration services improve soil health and water absorption. Our seeding programs fill in bare patches and create a lush, uniform lawn throughout your property.</p>
-            </div>
-
-            <!-- Seasonal Cleanup -->
-            <div class="service-card" id="seasonal">
-                <span class="service-icon">🍂</span>
-                <h3>Seasonal Cleanup</h3>
-                <p>Spring and fall cleanup services including leaf removal, mulch application, and debris removal to keep your landscape looking immaculate year-round.</p>
-            </div>
+        <div class="hero-buttons">
+          <a href="tel:(469)304-0535" class="btn btn-primary">Call (469) 304-0535</a>
+          <a href="#contact" class="btn btn-outline">Get Free Quote</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Benefits Section -->
-    <section class="benefits-section">
-        <div class="benefits-container">
-            <h2 class="section-title">Why Choose Hank's Lawn Care?</h2>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <span class="benefit-icon">⭐</span>
-                    <h4>Expert Technicians</h4>
-                    <p>Our trained professionals have years of experience with Plano's climate and soil conditions.</p>
-                </div>
-                <div class="benefit-item">
-                    <span class="benefit-icon">🛡️</span>
-                    <h4>Fully Insured</h4>
-                    <p>Licensed and insured for your peace of mind with comprehensive coverage.</p>
-                </div>
-                <div class="benefit-item">
-                    <span class="benefit-icon">💰</span>
-                    <h4>Affordable Pricing</h4>
-                    <p>Competitive rates with transparent pricing—no hidden fees or surprise charges.</p>
-                </div>
-                <div class="benefit-item">
-                    <span class="benefit-icon">⏰</span>
-                    <h4>Reliable Service</h4>
-                    <p>Consistent, on-time service you can depend on week after week.</p>
-                </div>
-            </div>
+  <!-- Services Section -->
+  <section class="services-section">
+    <div class="services-inner">
+      <h2 class="section-title">Our Lawn Care Services</h2>
+      <div class="services-grid">
+        <div class="service-card" id="mowing">
+          <span class="service-icon">✂️</span>
+          <h3>Mowing & Edging</h3>
+          <p>Regular lawn mowing with precision edging to keep your grass healthy and your landscape looking sharp. We use professional-grade equipment to ensure a perfect cut every time.</p>
         </div>
-    </section>
+        <div class="service-card" id="fertilization">
+          <span class="service-icon">🌱</span>
+          <h3>Fertilization & Weed Control</h3>
+          <p>Customized fertilization programs and targeted weed control to promote thick, green grass while eliminating unwanted weeds naturally and effectively.</p>
+        </div>
+        <div class="service-card" id="aeration">
+          <span class="service-icon">🌾</span>
+          <h3>Aeration & Seeding</h3>
+          <p>Professional aeration services improve soil health and water absorption. Our seeding programs fill in bare patches and create a lush, uniform lawn throughout your property.</p>
+        </div>
+        <div class="service-card" id="seasonal">
+          <span class="service-icon">🍂</span>
+          <h3>Seasonal Cleanup</h3>
+          <p>Spring and fall cleanup services including leaf removal, mulch application, and debris removal to keep your landscape looking immaculate year-round.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- CTA Banner -->
-    <section class="cta-banner">
-        <div class="cta-content">
-            <h2>Ready for a <span class="gold-accent">Greener Lawn?</span></h2>
-            <p>Get professional lawn care service and receive <strong>$49 off</strong> your first visit!</p>
-            <a href="tel:(469)304-0535" class="cta-button">(469) 304-0535</a>
-            <a href="hanks-plano-modern.html#contact" class="cta-button secondary">Get Free Quote</a>
+  <!-- Benefits Section -->
+  <section class="benefits-section">
+    <div class="benefits-inner">
+      <h2 class="section-title">Why Choose Hank's Lawn Care?</h2>
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <span class="benefit-icon">⭐</span>
+          <h4>Expert Technicians</h4>
+          <p>Our trained professionals have years of experience with Plano's climate and soil conditions.</p>
         </div>
-    </section>
+        <div class="benefit-item">
+          <span class="benefit-icon">🛡️</span>
+          <h4>Fully Insured</h4>
+          <p>Licensed and insured for your peace of mind with comprehensive coverage.</p>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">💰</span>
+          <h4>Affordable Pricing</h4>
+          <p>Competitive rates with transparent pricing—no hidden fees or surprise charges.</p>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">⏰</span>
+          <h4>Reliable Service</h4>
+          <p>Consistent, on-time service you can depend on week after week.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Hank's Handyman</h4>
-                    <p style="margin-top: 5px; font-size: 14px; color: #ccc;">Professional home and lawn services for Plano, TX and surrounding areas.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="handyman.html">Handyman</a></li>
-                        <li><a href="pest-control.html">Pest Control</a></li>
-                        <li><a href="lawncare.html">Lawn Care</a></li>
-                        <li><a href="outdoor.html">Outdoor Services</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="hanks-plano-modern.html#contact">Contact</a></li>
-                        <li><a href="#">Service Area</a></li>
-                        <li><a href="#">Testimonials</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <div class="footer-contact">
-                        <p class="phone">(469) 304-0535</p>
-                        <p>Mon-Fri: 8am - 5pm</p>
-                        <p>Plano, TX</p>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-divider">
-                <div class="footer-bottom">
-                    <p>&copy; 2026 Hank's Handyman. All rights reserved.</p>
-                    <p>Professional Services | Licensed & Insured</p>
-                </div>
-            </div>
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="cta-content">
+      <h2>Ready for a <span class="accent">Greener Lawn?</span></h2>
+      <p>Get professional lawn care service and receive <strong>$49 off</strong> your first visit!</p>
+      <div class="cta-buttons">
+        <a href="tel:(469)304-0535" class="cta-button">Call (469) 304-0535</a>
+        <a href="contact.html" class="cta-button secondary">Get Free Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>Hank's Handyman</h4>
+          <img src="https://callhanks.com/wp-content/uploads/2022/03/thumbnail_HanksLogo_RGB.webp" alt="Hank's Handyman Logo" class="footer-logo">
+          <p style="margin-top: 15px;">Professional home and lawn services for Plano, TX and surrounding areas.</p>
         </div>
-    </footer>
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="handyman.html">Handyman</a></li>
+            <li><a href="pest-control.html">Pest Control</a></li>
+            <li><a href="lawncare.html">Lawn Care</a></li>
+            <li><a href="outdoor.html">Outdoor Services</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Service Area</h4>
+          <ul>
+            <li><a href="#">Plano, TX</a></li>
+            <li><a href="#">Dallas Area</a></li>
+            <li><a href="#">DFW Region</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <a href="tel:(469)304-0535" class="phone">(469) 304-0535</a>
+            <p>Mon-Fri: 8am - 5pm</p>
+            <p>24/7 Emergency Service</p>
+            <p>Plano, TX</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-divider">
+        <div class="footer-bottom">
+          <p>&copy; 2026 Hank's Handyman. All rights reserved.</p>
+          <p>Professional Services | Licensed & Insured</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll shadow
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Intersection Observer for fade-up animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.service-card, .benefit-item').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
