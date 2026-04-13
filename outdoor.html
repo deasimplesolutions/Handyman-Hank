@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outdoor Services - Hank's Handyman | Plano, TX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1b3a4b;
+            --teal: #2d6375;
+            --gold: #d4a843;
+            --gold-light: #f5e6b8;
+            --cream: #fdf8ef;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+            --border-radius-lg: 16px;
+            --border-radius-sm: 10px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-gray);
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .topbar {
+            background-color: var(--navy);
+            color: white;
+            padding: 12px 0;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .topbar span {
+            margin: 0 20px;
+        }
+
+        .topbar a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .topbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item > a:hover {
+            color: var(--gold);
+        }
+
+        .nav-item.active > a {
+            color: var(--gold);
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown > a::after {
+            content: '▼';
+            font-size: 10px;
+            margin-left: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover > a::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            min-width: 220px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--navy);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--gold-light);
+            color: var(--navy);
+            padding-left: 25px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 .highlight {
+            color: var(--gold);
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        /* Services Grid */
+        .services-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--navy);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: var(--cream);
+            padding: 40px 25px;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: fadeUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .service-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .service-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .service-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .service-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--gold);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background-color: var(--light-gray);
+            padding: 80px 20px;
+            margin: 80px 0;
+        }
+
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefits-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--navy);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .benefit-item {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            animation: fadeUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .benefit-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .benefit-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .benefit-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .benefit-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .benefit-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .benefit-item h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .benefit-item p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin: 80px 0;
+            border-radius: var(--border-radius-lg);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .cta-banner p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background-color: var(--gold);
+            color: var(--navy);
+            padding: 16px 40px;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #f5e6b8;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(212, 168, 67, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--navy);
+            color: white;
+            padding: 60px 20px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--gold);
+        }
+
+        .footer-contact {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .footer-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom p {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 14px;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .section-title,
+            .benefits-title {
+                font-size: 32px;
+            }
+
+            .cta-banner h2 {
+                font-size: 28px;
+            }
+
+            .services-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="topbar">
+        <span>Monday - Friday: 8am - 5pm</span>
+        <span><a href="tel:4693040535">(469) 304-0535</a></span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="hanks-plano-modern.html" style="text-decoration: none; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--navy);">Hank's <span style="color: var(--gold);">Handyman</span></a>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item dropdown">
+                    <a href="handyman.html">Handyman</a>
+                    <div class="dropdown-menu">
+                        <a href="handyman.html#carpentry">Carpentry Repairs</a>
+                        <a href="handyman.html#doors">Door Repairs</a>
+                        <a href="handyman.html#hanging">Hanging & Assembly</a>
+                        <a href="handyman.html#appliance">Appliance Install</a>
+                        <a href="handyman.html#painting">Painting Services</a>
+                        <a href="handyman.html#sheetrock">Sheetrock & Tile</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="pest-control.html">Pest Control</a>
+                    <div class="dropdown-menu">
+                        <a href="pest-control.html#general">General Pest Control</a>
+                        <a href="pest-control.html#termite">Termite Protection</a>
+                        <a href="pest-control.html#rodent">Rodent Control</a>
+                        <a href="pest-control.html#mosquito">Mosquito Treatment</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="lawncare.html">Lawn Care</a>
+                    <div class="dropdown-menu">
+                        <a href="lawncare.html#mowing">Mowing & Edging</a>
+                        <a href="lawncare.html#fertilization">Fertilization & Weed Control</a>
+                        <a href="lawncare.html#aeration">Aeration & Seeding</a>
+                        <a href="lawncare.html#seasonal">Seasonal Cleanup</a>
+                    </div>
+                </li>
+                <li class="nav-item active dropdown">
+                    <a href="outdoor.html">Outdoor</a>
+                    <div class="dropdown-menu">
+                        <a href="outdoor.html#pressure">Pressure Washing</a>
+                        <a href="outdoor.html#gutters">Gutter Cleaning</a>
+                        <a href="outdoor.html#fencing">Fencing & Gates</a>
+                        <a href="outdoor.html#decks">Decks & Patios</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hanks-plano-modern.html#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>
+            <span class="highlight">Outdoor</span> Services
+        </h1>
+        <p>Professional pressure washing, gutter cleaning, fencing, decks, and patios to keep your outdoor spaces looking pristine</p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <h2 class="section-title">Our Outdoor Services</h2>
+        <div class="services-grid">
+            <!-- Pressure Washing -->
+            <div class="service-card" id="pressure">
+                <span class="service-icon">💨</span>
+                <h3>Pressure Washing</h3>
+                <p>Professional pressure washing services to clean driveways, patios, decks, house exteriors, and more. We remove dirt, mold, and stains while protecting your surfaces.</p>
+            </div>
+
+            <!-- Gutter Cleaning -->
+            <div class="service-card" id="gutters">
+                <span class="service-icon">🌊</span>
+                <h3>Gutter Cleaning</h3>
+                <p>Keep your gutters flowing freely with our thorough cleaning and maintenance services. We remove debris and ensure proper drainage to protect your home's foundation.</p>
+            </div>
+
+            <!-- Fencing & Gates -->
+            <div class="service-card" id="fencing">
+                <span class="service-icon">🚪</span>
+                <h3>Fencing & Gates</h3>
+                <p>Expert installation, repair, and maintenance of residential fencing and gates. From wooden privacy fences to vinyl and metal options, we create secure, attractive boundaries.</p>
+            </div>
+
+            <!-- Decks & Patios -->
+            <div class="service-card" id="decks">
+                <span class="service-icon">🏡</span>
+                <h3>Decks & Patios</h3>
+                <p>Build and maintain beautiful outdoor living spaces. We design and construct decks, patios, and outdoor structures that enhance your home's appeal and functionality.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="benefits-container">
+            <h2 class="benefits-title">Why Choose Hank's Handyman</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">⭐</div>
+                    <h4>Expert Technicians</h4>
+                    <p>Our skilled professionals have years of experience in outdoor services and deliver exceptional results every time.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🛡️</div>
+                    <h4>Fully Insured</h4>
+                    <p>We're fully licensed and insured, giving you peace of mind with every service we provide.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">⏰</div>
+                    <h4>Reliable & Punctual</h4>
+                    <p>We show up on time, every time, and complete projects efficiently without compromising quality.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💰</div>
+                    <h4>Competitive Pricing</h4>
+                    <p>Get premium outdoor services at fair prices. We offer transparent quotes with no hidden fees.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <div class="cta-banner">
+        <h2>Get $49 Off Your First Service</h2>
+        <p>Call today to schedule your outdoor service and redeem your exclusive offer</p>
+        <a href="tel:4693040535" class="cta-button">Call (469) 304-0535</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="handyman.html">Handyman</a></li>
+                        <li><a href="pest-control.html">Pest Control</a></li>
+                        <li><a href="lawncare.html">Lawn Care</a></li>
+                        <li><a href="outdoor.html">Outdoor Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="hanks-plano-modern.html#contact">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Service Area</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact">
+                        <p><strong>Phone:</strong> <a href="tel:4693040535">(469) 304-0535</a></p>
+                        <p><strong>Hours:</strong> Mon-Fri 8am - 5pm</p>
+                        <p><strong>Location:</strong> Plano, TX</p>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Google</a>
+                        <a href="#">Yelp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-divider">
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Hank's Handyman Services. All rights reserved.</p>
+                    <div>
+                        <a href="#" style="color: #e0e0e0; text-decoration: none; font-size: 13px; margin-right: 20px;">Privacy Policy</a>
+                        <a href="#" style="color: #e0e0e0; text-decoration: none; font-size: 13px;">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

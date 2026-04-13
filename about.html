@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Hank's Handyman - Plano, TX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1b3a4b;
+            --teal: #2d6375;
+            --gold: #d4a843;
+            --gold-light: #f5e6b8;
+            --cream: #fdf8ef;
+            --border-radius-lg: 16px;
+            --border-radius-sm: 10px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--navy);
+            background-color: var(--cream);
+            line-height: 1.6;
+        }
+
+        /* Topbar */
+        .topbar {
+            background-color: var(--navy);
+            color: white;
+            padding: 12px 20px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar-content {
+            display: flex;
+            gap: 30px;
+        }
+
+        .topbar-phone {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Sticky Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .navbar-logo {
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--navy);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+            padding: 8px 0;
+        }
+
+        .nav-link:hover {
+            color: var(--gold);
+        }
+
+        .nav-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius-sm);
+            min-width: 200px;
+            padding: 12px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+
+        .nav-item:hover .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            padding: 10px 20px;
+            color: var(--navy);
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--gold-light);
+            color: var(--navy);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            animation: fadeUp 0.8s ease-out;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .gold-accent {
+            color: var(--gold);
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        /* Fade Up Animation */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 20px;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            margin-bottom: 50px;
+            text-align: center;
+            color: var(--navy);
+        }
+
+        .section-title .gold-accent {
+            color: var(--gold);
+        }
+
+        /* Our Story Section */
+        .our-story {
+            background-color: white;
+        }
+
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .story-content p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .story-content strong {
+            color: var(--navy);
+        }
+
+        /* Values Section */
+        .our-values {
+            background-color: var(--cream);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeUp 0.8s ease-out backwards;
+        }
+
+        .value-card:nth-child(1) { animation-delay: 0.1s; }
+        .value-card:nth-child(2) { animation-delay: 0.2s; }
+        .value-card:nth-child(3) { animation-delay: 0.3s; }
+        .value-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--navy), var(--teal));
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--gold);
+        }
+
+        .value-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--navy);
+        }
+
+        .value-card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* Team Section */
+        .our-team {
+            background-color: white;
+        }
+
+        .team-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--navy), var(--teal));
+            color: white;
+            padding: 60px;
+            border-radius: var(--border-radius-lg);
+            animation: fadeUp 0.8s ease-out;
+        }
+
+        .team-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .team-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .team-highlight {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-left: 4px solid var(--gold);
+            margin-top: 30px;
+            border-radius: var(--border-radius-sm);
+        }
+
+        /* Service Area Section */
+        .service-area {
+            background-color: var(--cream);
+        }
+
+        .service-area-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-location {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            animation: fadeUp 0.8s ease-out backwards;
+            transition: transform 0.3s;
+        }
+
+        .service-location:nth-child(1) { animation-delay: 0.1s; }
+        .service-location:nth-child(2) { animation-delay: 0.2s; }
+        .service-location:nth-child(3) { animation-delay: 0.3s; }
+        .service-location:nth-child(4) { animation-delay: 0.4s; }
+        .service-location:nth-child(5) { animation-delay: 0.5s; }
+
+        .service-location:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-location p {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            animation: fadeUp 0.8s ease-out;
+        }
+
+        .cta-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background-color: var(--gold);
+            color: var(--navy);
+            padding: 16px 40px;
+            text-decoration: none;
+            border-radius: var(--border-radius-lg);
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-block;
+            transition: all 0.3s;
+            border: 2px solid var(--gold);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--gold);
+        }
+
+        .cta-phone {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 20px;
+            color: var(--gold);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--navy);
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .footer-section p, .footer-section a {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        .footer-section a {
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .footer-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 30px;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .navbar-menu {
+                gap: 20px;
+                font-size: 14px;
+            }
+
+            .nav-dropdown {
+                min-width: 180px;
+            }
+
+            .topbar-content {
+                gap: 15px;
+            }
+
+            .team-content {
+                padding: 40px 20px;
+            }
+
+            .cta-content h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-menu {
+                gap: 15px;
+                font-size: 12px;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            section {
+                padding: 50px 15px;
+            }
+
+            .value-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="topbar-content">
+            <span>Mon-Fri: 8am-5pm</span>
+        </div>
+        <div class="topbar-phone">
+            <span>📞</span>
+            <span>(469) 304-0535</span>
+        </div>
+    </div>
+
+    <!-- Sticky Navbar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a href="hanks-plano-modern.html" style="text-decoration: none; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--navy);">Hank's <span style="color: var(--gold);">Handyman</span></a>
+        </div>
+        <ul class="navbar-menu">
+            <li class="nav-item">
+                <a href="handyman.html" class="nav-link">Handyman</a>
+                <div class="nav-dropdown">
+                    <a href="handyman.html#carpentry" class="dropdown-item">Carpentry Repairs</a>
+                    <a href="handyman.html#doors" class="dropdown-item">Door Repairs</a>
+                    <a href="handyman.html#hanging" class="dropdown-item">Hanging & Assembly</a>
+                    <a href="handyman.html#appliances" class="dropdown-item">Appliance Install</a>
+                    <a href="handyman.html#painting" class="dropdown-item">Painting Services</a>
+                    <a href="handyman.html#sheetrock" class="dropdown-item">Sheetrock & Tile</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="pest-control.html" class="nav-link">Pest Control</a>
+                <div class="nav-dropdown">
+                    <a href="pest-control.html#general" class="dropdown-item">General Pest Control</a>
+                    <a href="pest-control.html#termite" class="dropdown-item">Termite Protection</a>
+                    <a href="pest-control.html#rodent" class="dropdown-item">Rodent Control</a>
+                    <a href="pest-control.html#mosquito" class="dropdown-item">Mosquito Treatment</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="lawncare.html" class="nav-link">Lawn Care</a>
+                <div class="nav-dropdown">
+                    <a href="lawncare.html#mowing" class="dropdown-item">Mowing & Edging</a>
+                    <a href="lawncare.html#fertilization" class="dropdown-item">Fertilization & Weed Control</a>
+                    <a href="lawncare.html#aeration" class="dropdown-item">Aeration & Seeding</a>
+                    <a href="lawncare.html#seasonal" class="dropdown-item">Seasonal Cleanup</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="outdoor.html" class="nav-link">Outdoor</a>
+                <div class="nav-dropdown">
+                    <a href="outdoor.html#pressure" class="dropdown-item">Pressure Washing</a>
+                    <a href="outdoor.html#gutters" class="dropdown-item">Gutter Cleaning</a>
+                    <a href="outdoor.html#fencing" class="dropdown-item">Fencing & Gates</a>
+                    <a href="outdoor.html#decks" class="dropdown-item">Decks & Patios</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="about.html" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="hanks-plano-modern.html#contact" class="nav-link">Contact</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>About <span class="gold-accent">Hank's</span> Handyman</h1>
+            <p>DFW's Premier Home Services Partner</p>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="our-story">
+        <div class="section-container">
+            <h2 class="section-title">Our <span class="gold-accent">Story</span></h2>
+            <div class="story-content fade-up">
+                <p>
+                    <strong>Hank's Handyman</strong> was founded in 2019 with a simple mission: to eliminate the frustration that homeowners and businesses experience when dealing with contractors. We believe that quality workmanship, reliability, and genuine customer care shouldn't be luxuries—they should be the standard.
+                </p>
+                <p>
+                    As a family-owned business serving the Dallas-Fort Worth metroplex, we've earned our reputation as DFW's #1 rated handyman service. Every project we undertake reflects our core values: exceptional craftsmanship, unwavering reliability, transparent communication, and comprehensive warranties that stand behind our work.
+                </p>
+                <p>
+                    Our journey is rooted in purpose. We built Hank's Handyman to be a company where customer service isn't just a tagline—it's woven into everything we do. From the moment you call until long after we leave your property, we're committed to exceeding your expectations and making your life easier.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section class="our-values">
+        <div class="section-container">
+            <h2 class="section-title">Our <span class="gold-accent">Values</span></h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">⭐</div>
+                    <h3>Quality Craftsmanship</h3>
+                    <p>We take pride in every detail, using premium materials and proven techniques to ensure your projects stand the test of time.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">💙</div>
+                    <h3>Customer First</h3>
+                    <p>Your satisfaction is our measure of success. We listen, communicate clearly, and go the extra mile to earn your trust.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Integrity & Trust</h3>
+                    <p>Honest pricing, transparent timelines, and accountability define every interaction. We do what we say we'll do.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌟</div>
+                    <h3>Community Focused</h3>
+                    <p>We're proud to serve our DFW neighbors and invest in the communities where we work and live every day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="our-team">
+        <div class="section-container">
+            <h2 class="section-title">Meet Our <span class="gold-accent">Team</span></h2>
+            <div class="team-content">
+                <h3>Your Trusted Neighbors & Skilled Professionals</h3>
+                <p>
+                    At Hank's Handyman, our greatest asset is our team. Every member of our crew is a fully trained, vetted employee—not a subcontractor. We invest in our people because we know that when you let someone into your home, you deserve to know exactly who you're letting in.
+                </p>
+                <div class="team-highlight">
+                    <p><strong>✓ Background Checked</strong> • <strong>✓ Drug Tested</strong> • <strong>✓ Safety Trained</strong></p>
+                </div>
+                <p>
+                    Our team members are great people who care deeply about their families, their community, and the quality of their work. They understand that a job isn't complete until you're completely satisfied. When you work with Hank's Handyman, you're working with professionals who genuinely care about serving you well.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Area Section -->
+    <section class="service-area">
+        <div class="section-container">
+            <h2 class="section-title">Service <span class="gold-accent">Area</span></h2>
+            <div class="service-area-grid">
+                <div class="service-location">
+                    <p>📍 Dallas, TX</p>
+                </div>
+                <div class="service-location">
+                    <p>📍 Fort Worth, TX</p>
+                </div>
+                <div class="service-location">
+                    <p>📍 Plano, TX</p>
+                </div>
+                <div class="service-location">
+                    <p>📍 Frisco, TX</p>
+                </div>
+                <div class="service-location">
+                    <p>📍 And More</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="cta-content">
+            <h2>Ready to Experience the Difference?</h2>
+            <p>Get $49 off your first service when you call today</p>
+            <a href="tel:+14693040535" class="cta-button">Call Now</a>
+            <div class="cta-phone">(469) 304-0535</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="hanks-plano-modern.html">Home</a></p>
+                    <p><a href="handyman.html">Handyman Services</a></p>
+                    <p><a href="pest-control.html">Pest Control</a></p>
+                    <p><a href="lawncare.html">Lawn Care</a></p>
+                    <p><a href="outdoor.html">Outdoor Services</a></p>
+                    <p><a href="about.html">About Us</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Phone: <a href="tel:+14693040535">(469) 304-0535</a></p>
+                    <p>Email: <a href="mailto:info@callhanks.com">info@callhanks.com</a></p>
+                    <p>Hours: Mon-Fri 8am-5pm</p>
+                    <p>Located in Plano, TX</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Service Areas</h3>
+                    <p>Dallas, TX</p>
+                    <p>Fort Worth, TX</p>
+                    <p>Plano, TX</p>
+                    <p>Frisco, TX</p>
+                    <p>And surrounding areas</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Why Choose Us</h3>
+                    <p>✓ DFW's #1 Rated</p>
+                    <p>✓ Family-Owned</p>
+                    <p>✓ Fully Vetted Team</p>
+                    <p>✓ Guaranteed Quality</p>
+                    <p>✓ Competitive Pricing</p>
+                </div>
+            </div>
+            <div class="footer-divider">
+                <p>&copy; 2024 Hank's Handyman Services. All rights reserved. | <a href="#" style="color: #999;">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
